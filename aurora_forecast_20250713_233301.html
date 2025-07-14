@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c9a892ff9f035a91873025485bfd866b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+                    bottom: 50px; right: 50px; width: 280px; height: 240px; 
+                    background-color: white; border:2px solid grey; z-index:9999; 
+                    font-size:14px; padding: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+        <h4 style="margin-top: 0; color: #333;">Aurora Forecast</h4>
+        <p><b>Kp Index:</b> 2.0</p>
+        <p><b>Data From:</b> 2025-07-14 00:00:00.000</p>
+        <p><b>Map Generated:</b> 2025-07-13 11:33 PM CST</p>
+        <p><b>Visible South To:</b> 70°N</p>
+        <p><b>Your Location:</b> Not Visible</p>
+        <hr style="margin: 10px 0;">
+        <p style="margin: 5px 0;"><span style="color:green;">●</span> Aurora Visible</p>
+        <p style="margin: 5px 0;"><span style="color:blue;">●</span> Aurora Not Visible</p>
+        <p style="margin: 5px 0;"><span style="color:red;">🏠</span> Your Location</p>
+        </div>
+        
+    
+            <div class="folium-map" id="map_c9a892ff9f035a91873025485bfd866b" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c9a892ff9f035a91873025485bfd866b = L.map(
+                "map_c9a892ff9f035a91873025485bfd866b",
+                {
+                    center: [55.0, -100.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 4,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_f6926844fee63568e29dcc556fd330c5 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_f6926844fee63568e29dcc556fd330c5.addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+            var tile_layer_a5db99a360650b39cf088e44b5bf141c = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a5db99a360650b39cf088e44b5bf141c.addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+            var tile_layer_fb8f40a3753e0d6bf87040f6d8b26667 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_fb8f40a3753e0d6bf87040f6d8b26667.addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+            var poly_line_c72158a537121fb665ed88e04322ea2a = L.polyline(
+                [[70.0, -180.0], [70.0, -175.0], [70.0, -170.0], [70.0, -165.0], [70.0, -160.0], [70.0, -155.0], [70.0, -150.0], [70.0, -145.0], [70.0, -140.0], [70.0, -135.0], [70.0, -130.0], [70.0, -125.0], [70.0, -120.0], [70.0, -115.0], [70.0, -110.0], [70.0, -105.0], [70.0, -100.0], [70.0, -95.0], [70.0, -90.0], [70.0, -85.0], [70.0, -80.0], [70.0, -75.0], [70.0, -70.0], [70.0, -65.0], [70.0, -60.0], [70.0, -55.0], [70.0, -50.0], [70.0, -45.0], [70.0, -40.0], [70.0, -35.0], [70.0, -30.0], [70.0, -25.0], [70.0, -20.0], [70.0, -15.0], [70.0, -10.0], [70.0, -5.0], [70.0, 0.0], [70.0, 5.0], [70.0, 10.0], [70.0, 15.0], [70.0, 20.0], [70.0, 25.0], [70.0, 30.0], [70.0, 35.0], [70.0, 40.0], [70.0, 45.0], [70.0, 50.0], [70.0, 55.0], [70.0, 60.0], [70.0, 65.0], [70.0, 70.0], [70.0, 75.0], [70.0, 80.0], [70.0, 85.0], [70.0, 90.0], [70.0, 95.0], [70.0, 100.0], [70.0, 105.0], [70.0, 110.0], [70.0, 115.0], [70.0, 120.0], [70.0, 125.0], [70.0, 130.0], [70.0, 135.0], [70.0, 140.0], [70.0, 145.0], [70.0, 150.0], [70.0, 155.0], [70.0, 160.0], [70.0, 165.0], [70.0, 170.0], [70.0, 175.0], [70.0, 180.0]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+        var popup_e0fb4ade37a311e9c4c9266269ce4267 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dd864099d391aad5563a972d2942d77c = $(`<div id="html_dd864099d391aad5563a972d2942d77c" style="width: 100.0%; height: 100.0%;">Aurora Visibility Line (Kp=2.0)</div>`)[0];
+                popup_e0fb4ade37a311e9c4c9266269ce4267.setContent(html_dd864099d391aad5563a972d2942d77c);
+            
+        
+
+        poly_line_c72158a537121fb665ed88e04322ea2a.bindPopup(popup_e0fb4ade37a311e9c4c9266269ce4267)
+        ;
+
+        
+    
+    
+            var polygon_35bdfe96c48cddbf70fc749444f6d142 = L.polygon(
+                [[70.0, -180.0], [70.0, -170.0], [70.0, -160.0], [70.0, -150.0], [70.0, -140.0], [70.0, -130.0], [70.0, -120.0], [70.0, -110.0], [70.0, -100.0], [70.0, -90.0], [70.0, -80.0], [70.0, -70.0], [70.0, -60.0], [70.0, -50.0], [70.0, -40.0], [70.0, -30.0], [70.0, -20.0], [70.0, -10.0], [70.0, 0.0], [70.0, 10.0], [70.0, 20.0], [70.0, 30.0], [70.0, 40.0], [70.0, 50.0], [70.0, 60.0], [70.0, 70.0], [70.0, 80.0], [70.0, 90.0], [70.0, 100.0], [70.0, 110.0], [70.0, 120.0], [70.0, 130.0], [70.0, 140.0], [70.0, 150.0], [70.0, 160.0], [70.0, 170.0], [70.0, 180.0], [90.0, 180.0], [90.0, 170.0], [90.0, 160.0], [90.0, 150.0], [90.0, 140.0], [90.0, 130.0], [90.0, 120.0], [90.0, 110.0], [90.0, 100.0], [90.0, 90.0], [90.0, 80.0], [90.0, 70.0], [90.0, 60.0], [90.0, 50.0], [90.0, 40.0], [90.0, 30.0], [90.0, 20.0], [90.0, 10.0], [90.0, 0.0], [90.0, -10.0], [90.0, -20.0], [90.0, -30.0], [90.0, -40.0], [90.0, -50.0], [90.0, -60.0], [90.0, -70.0], [90.0, -80.0], [90.0, -90.0], [90.0, -100.0], [90.0, -110.0], [90.0, -120.0], [90.0, -130.0], [90.0, -140.0], [90.0, -150.0], [90.0, -160.0], [90.0, -170.0], [90.0, -180.0]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+        var popup_150b613cfc7ae2be4cedd66a640894bd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b86ace68dc4811e1d713139ef8a4f192 = $(`<div id="html_b86ace68dc4811e1d713139ef8a4f192" style="width: 100.0%; height: 100.0%;">Potential Aurora Zone (Kp=2.0)</div>`)[0];
+                popup_150b613cfc7ae2be4cedd66a640894bd.setContent(html_b86ace68dc4811e1d713139ef8a4f192);
+            
+        
+
+        polygon_35bdfe96c48cddbf70fc749444f6d142.bindPopup(popup_150b613cfc7ae2be4cedd66a640894bd)
+        ;
+
+        
+    
+    
+            var poly_line_a440a1f5cd8386fc93ef6af182b08f18 = L.polyline(
+                [[30.0, -180.0], [30.0, 180.0]],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": "5, 5", "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 1}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+            var marker_b1f1f2d9d4d2ef5ed79b3a0f3a5dfaef = L.marker(
+                [30.0, -60.0],
+                {
+}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+            var div_icon_1f9b7e483ff3c350e8ffc20a08bdb128 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 12px; color: gray;\"\u003e30\u00b0N\u003c/div\u003e",
+  "iconSize": [40, 20],
+  "iconAnchor": [20, 10],
+  "className": "empty",
+});
+        
+    
+                marker_b1f1f2d9d4d2ef5ed79b3a0f3a5dfaef.setIcon(div_icon_1f9b7e483ff3c350e8ffc20a08bdb128);
+            
+    
+            var poly_line_33678090b160bfcd97b1cd8c0361e1e3 = L.polyline(
+                [[40.0, -180.0], [40.0, 180.0]],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": "5, 5", "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 1}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+            var marker_7c6e9e4680c843e2b507aaf42b30c746 = L.marker(
+                [40.0, -60.0],
+                {
+}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+            var div_icon_ed0303d7d077731ce0cdaae53492a8b9 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 12px; color: gray;\"\u003e40\u00b0N\u003c/div\u003e",
+  "iconSize": [40, 20],
+  "iconAnchor": [20, 10],
+  "className": "empty",
+});
+        
+    
+                marker_7c6e9e4680c843e2b507aaf42b30c746.setIcon(div_icon_ed0303d7d077731ce0cdaae53492a8b9);
+            
+    
+            var poly_line_1f9ce0fd7f00c1aad4fb87498984c48f = L.polyline(
+                [[50.0, -180.0], [50.0, 180.0]],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": "5, 5", "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 1}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+            var marker_55ef96cd725fb4f61710f7f32f3f5f60 = L.marker(
+                [50.0, -60.0],
+                {
+}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+            var div_icon_83449363af0d518e717cd71a16b85096 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 12px; color: gray;\"\u003e50\u00b0N\u003c/div\u003e",
+  "iconSize": [40, 20],
+  "iconAnchor": [20, 10],
+  "className": "empty",
+});
+        
+    
+                marker_55ef96cd725fb4f61710f7f32f3f5f60.setIcon(div_icon_83449363af0d518e717cd71a16b85096);
+            
+    
+            var poly_line_d2fd6aca0194bda443e3c446e29ba7b3 = L.polyline(
+                [[60.0, -180.0], [60.0, 180.0]],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": "5, 5", "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 1}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+            var marker_8aa65db02ab5f721f7e11a1bdbb95d3e = L.marker(
+                [60.0, -60.0],
+                {
+}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+            var div_icon_d655da868c4d9486b6bd11cc15f55d00 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 12px; color: gray;\"\u003e60\u00b0N\u003c/div\u003e",
+  "iconSize": [40, 20],
+  "iconAnchor": [20, 10],
+  "className": "empty",
+});
+        
+    
+                marker_8aa65db02ab5f721f7e11a1bdbb95d3e.setIcon(div_icon_d655da868c4d9486b6bd11cc15f55d00);
+            
+    
+            var poly_line_a2c9b2f95768016034a91a393c0ba0b6 = L.polyline(
+                [[70.0, -180.0], [70.0, 180.0]],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": "5, 5", "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 1}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+            var marker_81ce2f0d1e4f6b60f9c5852dae7feadb = L.marker(
+                [70.0, -60.0],
+                {
+}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+            var div_icon_21b4e53d4efdfef8fcd934e9a88e6126 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 12px; color: gray;\"\u003e70\u00b0N\u003c/div\u003e",
+  "iconSize": [40, 20],
+  "iconAnchor": [20, 10],
+  "className": "empty",
+});
+        
+    
+                marker_81ce2f0d1e4f6b60f9c5852dae7feadb.setIcon(div_icon_21b4e53d4efdfef8fcd934e9a88e6126);
+            
+    
+            var marker_6857e231c73a268fbef97c2bfdb10d69 = L.marker(
+                [40.6664, -89.589],
+                {
+}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+            var icon_c41fe71ee1d57fd9b062dac568e991e5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_424bc940156b29b729f95f84ff8ebd3f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7eddd4e0f77f2803f7fb92d3327886ea = $(`<div id="html_7eddd4e0f77f2803f7fb92d3327886ea" style="width: 100.0%; height: 100.0%;">             <b>Your Location</b><br>             Lat: 40.67°N<br>             Lon: -89.59°W<br>             Aurora Visible: No<br>             Kp Index: 2.0<br>             Distance to Aurora: 29.3° south             </div>`)[0];
+                popup_424bc940156b29b729f95f84ff8ebd3f.setContent(html_7eddd4e0f77f2803f7fb92d3327886ea);
+            
+        
+
+        marker_6857e231c73a268fbef97c2bfdb10d69.bindPopup(popup_424bc940156b29b729f95f84ff8ebd3f)
+        ;
+
+        
+    
+    
+            marker_6857e231c73a268fbef97c2bfdb10d69.bindTooltip(
+                `<div>
+                     Your Location
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6857e231c73a268fbef97c2bfdb10d69.setIcon(icon_c41fe71ee1d57fd9b062dac568e991e5);
+            
+    
+            var circle_marker_1e06423a6db1e56b17e3a8731fa6a89c = L.circleMarker(
+                [47.6062, -122.3321],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+        var popup_c88b4c4ec7fdd3e109c39bc767322e53 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3e7931645296ea27f139cc38b334bf54 = $(`<div id="html_3e7931645296ea27f139cc38b334bf54" style="width: 100.0%; height: 100.0%;">                 <b>Seattle</b><br>                 Aurora Visible: No<br>                 Lat: 47.6°N                 </div>`)[0];
+                popup_c88b4c4ec7fdd3e109c39bc767322e53.setContent(html_3e7931645296ea27f139cc38b334bf54);
+            
+        
+
+        circle_marker_1e06423a6db1e56b17e3a8731fa6a89c.bindPopup(popup_c88b4c4ec7fdd3e109c39bc767322e53)
+        ;
+
+        
+    
+    
+            circle_marker_1e06423a6db1e56b17e3a8731fa6a89c.bindTooltip(
+                `<div>
+                     Seattle
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_31ed03540e42cc2859f13c27480b68e8 = L.circleMarker(
+                [44.9778, -93.265],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+        var popup_d6f9c4ce186f9c5ded7cf63efe0c06b4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_31a57c35838b1f7e4a8c6d6ab36ac230 = $(`<div id="html_31a57c35838b1f7e4a8c6d6ab36ac230" style="width: 100.0%; height: 100.0%;">                 <b>Minneapolis</b><br>                 Aurora Visible: No<br>                 Lat: 45.0°N                 </div>`)[0];
+                popup_d6f9c4ce186f9c5ded7cf63efe0c06b4.setContent(html_31a57c35838b1f7e4a8c6d6ab36ac230);
+            
+        
+
+        circle_marker_31ed03540e42cc2859f13c27480b68e8.bindPopup(popup_d6f9c4ce186f9c5ded7cf63efe0c06b4)
+        ;
+
+        
+    
+    
+            circle_marker_31ed03540e42cc2859f13c27480b68e8.bindTooltip(
+                `<div>
+                     Minneapolis
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ed517383bbb7f7968df7724c29df01d0 = L.circleMarker(
+                [41.8781, -87.6298],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+        var popup_b13e532622346f18d367ec9c1db3ba85 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_232b062d0885838690ddcf617389d40d = $(`<div id="html_232b062d0885838690ddcf617389d40d" style="width: 100.0%; height: 100.0%;">                 <b>Chicago</b><br>                 Aurora Visible: No<br>                 Lat: 41.9°N                 </div>`)[0];
+                popup_b13e532622346f18d367ec9c1db3ba85.setContent(html_232b062d0885838690ddcf617389d40d);
+            
+        
+
+        circle_marker_ed517383bbb7f7968df7724c29df01d0.bindPopup(popup_b13e532622346f18d367ec9c1db3ba85)
+        ;
+
+        
+    
+    
+            circle_marker_ed517383bbb7f7968df7724c29df01d0.bindTooltip(
+                `<div>
+                     Chicago
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d05278724cf0e2b7187d03f748bbe206 = L.circleMarker(
+                [40.7128, -74.006],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+        var popup_d7a16fbce12f5ea608b80a0fe8903dbe = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b4a08c6d48d7ce8ecde1cdf7339107e4 = $(`<div id="html_b4a08c6d48d7ce8ecde1cdf7339107e4" style="width: 100.0%; height: 100.0%;">                 <b>New York</b><br>                 Aurora Visible: No<br>                 Lat: 40.7°N                 </div>`)[0];
+                popup_d7a16fbce12f5ea608b80a0fe8903dbe.setContent(html_b4a08c6d48d7ce8ecde1cdf7339107e4);
+            
+        
+
+        circle_marker_d05278724cf0e2b7187d03f748bbe206.bindPopup(popup_d7a16fbce12f5ea608b80a0fe8903dbe)
+        ;
+
+        
+    
+    
+            circle_marker_d05278724cf0e2b7187d03f748bbe206.bindTooltip(
+                `<div>
+                     New York
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1736a5ed936190f87528a1979f25ffa2 = L.circleMarker(
+                [39.7392, -104.9903],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+        var popup_33d35c80ea9bef8838b587344ff516af = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ccd18856bfcdbe6f5fe7acd0912b3025 = $(`<div id="html_ccd18856bfcdbe6f5fe7acd0912b3025" style="width: 100.0%; height: 100.0%;">                 <b>Denver</b><br>                 Aurora Visible: No<br>                 Lat: 39.7°N                 </div>`)[0];
+                popup_33d35c80ea9bef8838b587344ff516af.setContent(html_ccd18856bfcdbe6f5fe7acd0912b3025);
+            
+        
+
+        circle_marker_1736a5ed936190f87528a1979f25ffa2.bindPopup(popup_33d35c80ea9bef8838b587344ff516af)
+        ;
+
+        
+    
+    
+            circle_marker_1736a5ed936190f87528a1979f25ffa2.bindTooltip(
+                `<div>
+                     Denver
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9d36b970ec2a2a050ca6d09b18afc7e3 = L.circleMarker(
+                [51.0447, -114.0719],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+        var popup_14affaf987248d12ea52709258587f69 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e8d5955c11db8af338b8b18c913b9ba8 = $(`<div id="html_e8d5955c11db8af338b8b18c913b9ba8" style="width: 100.0%; height: 100.0%;">                 <b>Calgary</b><br>                 Aurora Visible: No<br>                 Lat: 51.0°N                 </div>`)[0];
+                popup_14affaf987248d12ea52709258587f69.setContent(html_e8d5955c11db8af338b8b18c913b9ba8);
+            
+        
+
+        circle_marker_9d36b970ec2a2a050ca6d09b18afc7e3.bindPopup(popup_14affaf987248d12ea52709258587f69)
+        ;
+
+        
+    
+    
+            circle_marker_9d36b970ec2a2a050ca6d09b18afc7e3.bindTooltip(
+                `<div>
+                     Calgary
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0fb54e30985b409c09c23ce55be39295 = L.circleMarker(
+                [49.8951, -97.1384],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+        var popup_0ad06057c0c387b65b6bfb2da8e5ae67 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7f2caf7a5e560486e1694548716bee65 = $(`<div id="html_7f2caf7a5e560486e1694548716bee65" style="width: 100.0%; height: 100.0%;">                 <b>Winnipeg</b><br>                 Aurora Visible: No<br>                 Lat: 49.9°N                 </div>`)[0];
+                popup_0ad06057c0c387b65b6bfb2da8e5ae67.setContent(html_7f2caf7a5e560486e1694548716bee65);
+            
+        
+
+        circle_marker_0fb54e30985b409c09c23ce55be39295.bindPopup(popup_0ad06057c0c387b65b6bfb2da8e5ae67)
+        ;
+
+        
+    
+    
+            circle_marker_0fb54e30985b409c09c23ce55be39295.bindTooltip(
+                `<div>
+                     Winnipeg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b8669b4db11283081fb5abcb37c882c7 = L.circleMarker(
+                [61.2181, -149.9003],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+        var popup_e2dcbcd555ed5b394af90eaa6ab71890 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1311544a44a905302e7d0c596ce5bcb9 = $(`<div id="html_1311544a44a905302e7d0c596ce5bcb9" style="width: 100.0%; height: 100.0%;">                 <b>Anchorage</b><br>                 Aurora Visible: No<br>                 Lat: 61.2°N                 </div>`)[0];
+                popup_e2dcbcd555ed5b394af90eaa6ab71890.setContent(html_1311544a44a905302e7d0c596ce5bcb9);
+            
+        
+
+        circle_marker_b8669b4db11283081fb5abcb37c882c7.bindPopup(popup_e2dcbcd555ed5b394af90eaa6ab71890)
+        ;
+
+        
+    
+    
+            circle_marker_b8669b4db11283081fb5abcb37c882c7.bindTooltip(
+                `<div>
+                     Anchorage
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_09cb64bc018f921bf0a8c8cec4c0c4be = L.circleMarker(
+                [64.8378, -147.7164],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+        
+    
+        var popup_c952ee8a47fabe604b5885e91cdd6f44 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bed13c2488ae19b2d3d94d6429a7cdd0 = $(`<div id="html_bed13c2488ae19b2d3d94d6429a7cdd0" style="width: 100.0%; height: 100.0%;">                 <b>Fairbanks</b><br>                 Aurora Visible: No<br>                 Lat: 64.8°N                 </div>`)[0];
+                popup_c952ee8a47fabe604b5885e91cdd6f44.setContent(html_bed13c2488ae19b2d3d94d6429a7cdd0);
+            
+        
+
+        circle_marker_09cb64bc018f921bf0a8c8cec4c0c4be.bindPopup(popup_c952ee8a47fabe604b5885e91cdd6f44)
+        ;
+
+        
+    
+    
+            circle_marker_09cb64bc018f921bf0a8c8cec4c0c4be.bindTooltip(
+                `<div>
+                     Fairbanks
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var layer_control_19ba51035c1db946064382e02b35e27b_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_f6926844fee63568e29dcc556fd330c5,
+                    "Satellite" : tile_layer_a5db99a360650b39cf088e44b5bf141c,
+                    "National Geographic" : tile_layer_fb8f40a3753e0d6bf87040f6d8b26667,
+                },
+                overlays :  {
+                },
+            };
+            let layer_control_19ba51035c1db946064382e02b35e27b = L.control.layers(
+                layer_control_19ba51035c1db946064382e02b35e27b_layers.base_layers,
+                layer_control_19ba51035c1db946064382e02b35e27b_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_c9a892ff9f035a91873025485bfd866b);
+
+        
+</script>
+</html>
