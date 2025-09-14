@@ -1,12 +1,10 @@
 Aurora Tracker made as part of a Palantir data science project.
 
-<object width="425" height="350">
-  <param name="movie" value="[[http://www.youtube.com/user/wwwLoveWatercom?v=BTRN1YETpyg](https://www.youtube.com/watch?v=azO8jLF4mDM)](https://youtu.be/azO8jLF4mDM
-)" />
-  <param name="wmode" value="transparent" />
-  <embed src="[[http://www.youtube.com/user/wwwLoveWatercom?v=BTRN1YETpyg](https://youtu.be/azO8jLF4mDM
-)"](https://www.youtube.com/watch?v=azO8jLF4mDM)"
-         type="application/x-shockwave-flash"
-         wmode="transparent" width="425" height="350" />
-</object>
+<iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/azO8jLF4mDM" 
+        title="Aurora Tracker made as part of a Palantir data science project"
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+</iframe>
 
